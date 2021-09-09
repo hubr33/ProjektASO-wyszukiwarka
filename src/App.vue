@@ -12,7 +12,7 @@
             Imię: <span> {{ client.name }}</span>
           </p>
           <p>
-            ssssssssssssssssssssssssssssxxxxxx Nazwisko:
+            Naprawa @@@@@@@@@@@@@@@@@@@@@2 Nazwisko:
             <span>{{ client.surname }}</span>
           </p>
           <p>
