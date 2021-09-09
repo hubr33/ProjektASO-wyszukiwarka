@@ -8,7 +8,7 @@
           v-for="(client, index) in this.pickedClient"
           :key="index"
         >
-          <p>
+          <p>d
             Imię: <span> {{ client.name }}</span>
           </p>
           <p>
