@@ -6,7 +6,7 @@ import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
 
 Vue.config.productionTip = false;
-
+Vue.config.devtools = true;
 Vue.prototype.coachViewContext = window.coachViewContext;
 
 new Vue({

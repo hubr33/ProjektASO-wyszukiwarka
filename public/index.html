@@ -1,19 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css"
+    />
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to
+        continue.</strong
+      >
     </noscript>
+    <script>
+      window.coachViewContext = {
+        binding: {
+          value: {
+            buttonAddCar: false,
+            buttonAddClient: false,
+            buttonExit: false,
+            buttonSearchClient: false,
+            carAso: [
+              {
+                brand: "",
+                color: "",
+                driveType: "",
+                engineType: "",
+                gearType: "",
+                model: "",
+                mrcCaseHeader: {
+                  bpmProcessId: "",
+                  caseId: "",
+                  className: "",
+                  createDate: "2021-09-09T12:53:28.243+02:00",
+                  createdBy: "",
+                  createdByRoleName: "",
+                  dirty: false,
+                  dueDate: "2021-09-09T12:53:28.243+02:00",
+                  endDate: "2021-09-09T12:53:28.243+02:00",
+                  groupId: "",
+                  inventoryCode: "",
+                  lastModifiedBy: "",
+                  lastModifiedByRoleName: "",
+                  lastModifyDate: "2021-09-09T12:53:28.243+02:00",
+                  modifyComment: "",
+                  objectID: "",
+                  piervousVersionId: "",
+                  pkPropertyName: "",
+                  priceExchangeRate: 0.0,
+                  priceValue: 0.0,
+                  priceValueCode: "",
+                  rootVersionContextID: "",
+                  rootVersionId: "",
+                  status: "",
+                  storeCount: 0,
+                  storeId: "",
+                  subCaseReferenceId: "",
+                  typeCode: "",
+                  typeId: "",
+                  version: "",
+                },
+                owner: {
+                  address: "",
+                  companyName: "",
+                  email: "",
+                  mrcCaseHeader: {
+                    bpmProcessId: "",
+                    caseId: "",
+                    className: "",
+                    createDate: "2021-09-09T12:53:28.244+02:00",
+                    createdBy: "",
+                    createdByRoleName: "",
+                    dirty: false,
+                    dueDate: "2021-09-09T12:53:28.244+02:00",
+                    endDate: "2021-09-09T12:53:28.244+02:00",
+                    groupId: "",
+                    inventoryCode: "",
+                    lastModifiedBy: "",
+                    lastModifiedByRoleName: "",
+                    lastModifyDate: "2021-09-09T12:53:28.244+02:00",
+                    modifyComment: "",
+                    objectID: "",
+                    piervousVersionId: "",
+                    pkPropertyName: "",
+                    priceExchangeRate: 0.0,
+                    priceValue: 0.0,
+                    priceValueCode: "",
+                    rootVersionContextID: "",
+                    rootVersionId: "",
+                    status: "",
+                    storeCount: 0,
+                    storeId: "",
+                    subCaseReferenceId: "",
+                    typeCode: "",
+                    typeId: "",
+                    version: "",
+                  },
+                  name: "",
+                  nip: "",
+                  pesel: "",
+                  phoneNumber: "",
+                  surname: "",
+                },
+                productionYear: "",
+                vinNumber: "",
+              },
+            ],
+            currentClient: {
+              address: "",
+              companyName: "",
+              email: "",
+              mrcCaseHeader: {
+                bpmProcessId: "",
+                caseId: "",
+                className: "",
+                createDate: "2021-09-09T12:53:28.245+02:00",
+                createdBy: "",
+                createdByRoleName: "",
+                dirty: false,
+                dueDate: "2021-09-09T12:53:28.245+02:00",
+                endDate: "2021-09-09T12:53:28.245+02:00",
+                groupId: "",
+                inventoryCode: "",
+                lastModifiedBy: "",
+                lastModifiedByRoleName: "",
+                lastModifyDate: "2021-09-09T12:53:28.245+02:00",
+                modifyComment: "",
+                objectID: "",
+                piervousVersionId: "",
+                pkPropertyName: "",
+                priceExchangeRate: 0.0,
+                priceValue: 0.0,
+                priceValueCode: "",
+                rootVersionContextID: "",
+                rootVersionId: "",
+                status: "",
+                storeCount: 0,
+                storeId: "",
+                subCaseReferenceId: "",
+                typeCode: "",
+                typeId: "",
+                version: "",
+              },
+              name: "",
+              nip: "",
+              pesel: "",
+              phoneNumber: "",
+              surname: "",
+            },
+            searchByNip: "",
+            searchByPesel: "",
+          },
+        },
+        get(key) {
+          return this;
+        },
+        set(key, param2) {},
+      };
+    </script>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>

@@ -3,35 +3,32 @@
     <div class="clientData" v-if="this.personDataIsVisible">
       <section class="moreInfoAboutClient">
         <h2>Dane klienta</h2>
-        <div
-          class="aboutClient"
-          v-for="(client, index) in this.pickedClient"
-          :key="index"
-        >
+        <div class="aboutClient">
           <p>
-            Imię: <span> {{ client.name }}</span>
+            Imię: <span>{{ VueShowClient.currentClient.name }}</span>
           </p>
           <p>
             Nazwisko:
-            <span>{{ client.surname }}</span>
+            <span>{{ VueShowClient.currentClient.surname }}</span>
           </p>
           <p>
-            Nazwa firmy: <span>{{ client.companyName }}</span>
+            Nazwa firmy:
+            <span>{{ VueShowClient.currentClient.companyName }}</span>
           </p>
           <p>
-            NIP: <span>{{ client.nip }}</span>
+            NIP: <span>{{ VueShowClient.currentClient.nip }}</span>
           </p>
           <p>
-            Adres: <span>{{ client.address }}</span>
+            Adres: <span>{{ VueShowClient.currentClient.address }}</span>
           </p>
           <p>
-            Pesel: <span>{{ client.pesel }}</span>
+            Pesel: <span>{{ VueShowClient.currentClient.pesel }}</span>
           </p>
           <p>
-            Telefon: <span>{{ client.phoneNumber }}</span>
+            Telefon: <span>{{ VueShowClient.currentClient.phoneNumber }}</span>
           </p>
           <p>
-            E-mail: <span>{{ client.email }}</span>
+            E-mail: <span>{{ VueShowClient.currentClient.email }}</span>
           </p>
         </div>
         <div class="clientCars">
@@ -69,34 +66,31 @@
           <button class="addClient">Dodaj klienta</button>
         </form>
         <aside>
-          <h3 v-if="this.clientList.length == 0">
+          <!-- <h3 v-if="this.clientList.length == 0">
             Nie znaleziono klienta w bazie danych
-          </h3>
-          <div
-            class="oneClient"
-            v-for="(client, index) in clientList"
-            :key="index"
-            :id="client.id"
-          >
+          </h3> -->
+          <div class="oneClient">
             <tr>
-              <h4>Klient</h4>
-              <td>{{ client.name }}</td>
-              <td>{{ client.surname }}</td>
+              <h4>Imię i nazwisko</h4>
+              <td>{{ VueShowClient.currentClient.name }}</td>
+              <td>{{ VueShowClient.currentClient.surname }}</td>
             </tr>
             <tr>
-              <h4>Dane firmy</h4>
-              <td>{{ client.companyName }}</td>
-              <td>{{ client.nip }}</td>
+              <h4>Nazwa i NIP firmy</h4>
+              <td>
+                {{ VueShowClient.currentClient.companyName }}
+              </td>
+              <td>{{ VueShowClient.currentClient.nip }}</td>
             </tr>
             <tr>
               <h4>Adres i pesel</h4>
-              <td>{{ client.address }}</td>
-              <td class="pesel">{{ client.pesel }}</td>
+              <td>{{ VueShowClient.currentClient.address }}</td>
+              <td class="pesel">{{ VueShowClient.currentClient.pesel }}</td>
             </tr>
             <tr>
               <h4>Dane kontaktowe</h4>
-              <td>{{ client.phoneNumber }}</td>
-              <td>{{ client.email }}</td>
+              <td>{{ VueShowClient.currentClient.phoneNumber }}</td>
+              <td>{{ VueShowClient.currentClient.email }}</td>
             </tr>
             <button class="showMoreInfo" @click="showPerson">
               Pokaż więcej informacji
@@ -110,43 +104,20 @@
 
 <script>
 export default {
-  data() {
-    return {
-      typedPesel: "",
-      personDataIsVisible: false,
-      pickedClient: [],
-      clientList: [
-        {
-          id: 0,
-          name: "Jan",
-          surname: "Kowalski",
-          companyName: "JanBud",
-          pesel: "70052856839",
-          nip: "5842751979",
-          address: "Warszawa, ul. Złota 4",
-          email: "jan.kowal@gmail.com",
-          phoneNumber: "333-333-333",
-        },
-        {
-          id: 1,
-          name: "Hubert",
-          surname: "Radziwonka",
-          companyName: "Hubrex",
-          pesel: "4052856839",
-          nip: "5427342979",
-          address: "Warszawa, ul. Złota 8",
-          email: "hub.rad@gmail.com",
-          phoneNumber: "444-444-444",
-        },
-      ],
-    };
+  data: () => ({
+    VueShowClient: {},
+    typedPesel: "",
+    personDataIsVisible: false,
+    pickedClient: [],
+    clientList: [],
+  }),
+  mounted() {
+    this.VueShowClient = this.coachViewContext.binding.value;
+    console.log(this.VueShowClient);
+    //console.log(this.kierunkiStudiow);
   },
   methods: {
-    showPerson(e) {
-      this.pickedClient = [];
-      const pickedElement = e.target.parentNode.id;
-      const person = this.clientList[pickedElement];
-      this.pickedClient.push(person);
+    showPerson() {
       this.personDataIsVisible = true;
     },
     showTestResult() {
@@ -157,6 +128,9 @@ export default {
       this.pickedClient = [];
     },
     searchClient() {
+      this.coachViewContext.binding.set("value", this.VueShowClient);
+      this.coachViewContext.trigger();
+
       // const clientPesel = document.querySelectorAll(".oneClient tr .pesel");
       // console.log(
       //   clientPesel.forEach((pesel) => {
