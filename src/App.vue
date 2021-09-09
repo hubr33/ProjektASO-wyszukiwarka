@@ -48,30 +48,6 @@
                 <td>VIN: <span>xdddd</span></td>
               </tr>
             </div>
-
-            <div class="oneClientCar">
-              <tr>
-                <td>Marka: <span>asd</span></td>
-                <td>Model: <span>asd</span></td>
-                <td>Silnik: <span>2.0 diesel 180km</span></td>
-                <td>skrzynia biegów: <span>Manualna</span></td>
-                <td>Rok produkcji: <span>2009</span></td>
-                <td>Kolor: <span>czarny</span></td>
-                <td>VIN: <span>xdddd</span></td>
-              </tr>
-            </div>
-
-            <div class="oneClientCar">
-              <tr>
-                <td>Marka: <span>asd</span></td>
-                <td>Model: <span>asd</span></td>
-                <td>Silnik: <span>2.0 diesel 180km</span></td>
-                <td>skrzynia biegów: <span>Manualna</span></td>
-                <td>Rok produkcji: <span>2009</span></td>
-                <td>Kolor: <span>czarny</span></td>
-                <td>VIN: <span>xdddd</span></td>
-              </tr>
-            </div>
           </div>
         </div>
         <button class="closeClientData" @click="closeClientData">X</button>
@@ -86,6 +62,7 @@
           <input
             type="text"
             placeholder="Wyszukaj klienta po numerze PESEL..."
+            v-model="typedPesel"
           />
           <button class="searchClient">Wyszukaj klienta</button>
           <button class="addClient">Dodaj klienta</button>
@@ -179,13 +156,20 @@ export default {
       this.pickedClient = [];
     },
     searchClient() {
-      const clientPesel = document.querySelectorAll(".oneClient tr .pesel");
-      console.log(
-        clientPesel.forEach((pesel) => {
-          console.log(pesel.textContent);
-          console.log(pesel.parentNode.parentNode);
-        })
-      );
+      // const clientPesel = document.querySelectorAll(".oneClient tr .pesel");
+      // console.log(
+      //   clientPesel.forEach((pesel) => {
+      //     const client = pesel.parentNode.parentNode;
+      //     if (this.typedPesel !== pesel.textContent) {
+      //       client.style.display = "none";
+      //     } else {
+      //       client.style.display = "flex";
+      //     }
+      //     console.log(pesel.textContent);
+      //     console.log(pesel.parentNode.parentNode);
+      //   })
+      // );
+      console.log(this.clientList);
     },
   },
 };
