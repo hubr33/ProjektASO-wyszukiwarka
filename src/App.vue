@@ -12,7 +12,8 @@
             Imię: <span> {{ client.name }}</span>
           </p>
           <p>
-            Nazwisko: <span>{{ client.surname }}</span>
+            ssssssssssssssssssssssssssssxxxxxx Nazwisko:
+            <span>{{ client.surname }}</span>
           </p>
           <p>
             Nazwa firmy: <span>{{ client.companyName }}</span>
