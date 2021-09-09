@@ -8,11 +8,11 @@
           v-for="(client, index) in this.pickedClient"
           :key="index"
         >
-          <p>d
+          <p>
             Imię: <span> {{ client.name }}</span>
           </p>
           <p>
-            ssssssssssssssssssssssssssssxxxxxx Nazwisko:
+            Nazwisko:
             <span>{{ client.surname }}</span>
           </p>
           <p>
