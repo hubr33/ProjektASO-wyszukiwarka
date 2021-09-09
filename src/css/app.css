@@ -1,0 +1,296 @@
+main {
+  position: relative;
+  background-color: whitesmoke;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main .clientData {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .clientData .moreInfoAboutClient {
+  position: relative;
+  width: 500px;
+  height: 800px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 7px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 4px 1px black;
+          box-shadow: 0 0 4px 1px black;
+}
+
+main .clientData .moreInfoAboutClient h2 {
+  height: 100px;
+  width: 100%;
+  text-align: center;
+  line-height: 100px;
+  background-color: rgba(135, 206, 250, 0.3);
+}
+
+main .clientData .moreInfoAboutClient .aboutClient {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding-left: 20px;
+  width: 100%;
+  height: 300px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main .clientData .moreInfoAboutClient .aboutClient p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+main .clientData .moreInfoAboutClient .aboutClient p span {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+main .clientData .moreInfoAboutClient .clientCars {
+  position: relative;
+  width: 100%;
+  height: 400px;
+}
+
+main .clientData .moreInfoAboutClient .clientCars h4 {
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+}
+
+main .clientData .moreInfoAboutClient .clientCars .addNewCar {
+  position: absolute;
+  right: 20px;
+  background-color: rgba(135, 206, 250, 0.3);
+  border-radius: 12px;
+  padding: 0 10px;
+  top: 0;
+  height: 40px;
+}
+
+main .clientData .moreInfoAboutClient .clientCars .addNewCar:hover {
+  background-color: rgba(135, 206, 250, 0.5);
+}
+
+main .clientData .moreInfoAboutClient .clientCars .clientCarsList {
+  width: 100%;
+  height: 360px;
+  overflow: scroll;
+}
+
+main .clientData .moreInfoAboutClient .clientCars .clientCarsList .oneClientCar {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 4px 0;
+}
+
+main .clientData .moreInfoAboutClient .clientCars .clientCarsList .oneClientCar tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(102, 24, 24, 0.06);
+  height: 140px;
+  width: 90%;
+  border-radius: 6px;
+  border: 1px solid black;
+  -webkit-box-shadow: 0 0 2px 1px;
+          box-shadow: 0 0 2px 1px;
+}
+
+main .clientData .moreInfoAboutClient .clientCars .clientCarsList .oneClientCar tr td {
+  padding-left: 20px;
+  font-weight: bold;
+}
+
+main .clientData .moreInfoAboutClient .clientCars .clientCarsList .oneClientCar tr td span {
+  font-weight: normal;
+}
+
+main .clientData .moreInfoAboutClient .closeClientData {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 6px 10px;
+}
+
+main header {
+  width: 100%;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(135, 206, 250, 0.4);
+}
+
+main header h1 {
+  font-size: 28px;
+}
+
+main .aboutClient {
+  width: 100%;
+  height: calc(100vh - 80px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .aboutClient div.clientList {
+  width: 70%;
+  height: 90%;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  -webkit-box-shadow: 0 0 4px 1px black;
+          box-shadow: 0 0 4px 1px black;
+  background-color: rgba(135, 206, 250, 0.1);
+  overflow: hidden;
+}
+
+main .aboutClient div.clientList form {
+  width: 100%;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+main .aboutClient div.clientList form input {
+  width: 50%;
+  height: 32%;
+  border-radius: 6px;
+  padding: 3px 8px;
+  background-color: white;
+  outline: none;
+}
+
+main .aboutClient div.clientList form button {
+  position: relative;
+  width: 15%;
+  background-color: white;
+  padding: 6px 20px;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+main .aboutClient div.clientList form button::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: rgba(135, 206, 250, 0.8);
+  border-radius: 8px;
+  left: -100%;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  bottom: 0px;
+}
+
+main .aboutClient div.clientList form button:hover::after {
+  left: 0;
+}
+
+main .aboutClient div.clientList aside {
+  width: 100%;
+  height: calc(100% - 100px);
+  background-color: white;
+  overflow: scroll;
+}
+
+main .aboutClient div.clientList aside h3 {
+  text-align: center;
+  padding: 12px 0;
+}
+
+main .aboutClient div.clientList aside .oneClient {
+  width: 100%;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-bottom: 2px solid black;
+}
+
+main .aboutClient div.clientList aside .oneClient tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 20%;
+  height: 100%;
+}
+
+main .aboutClient div.clientList aside .oneClient .showMoreInfo {
+  width: 20%;
+  background-color: rgba(135, 206, 250, 0.1);
+}
+
+main .aboutClient div.clientList aside .oneClient .showMoreInfo:hover {
+  background-color: rgba(135, 206, 250, 0.25);
+}
+/*# sourceMappingURL=app.css.map */
