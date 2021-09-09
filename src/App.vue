@@ -62,8 +62,12 @@
             placeholder="Wyszukaj klienta po numerze PESEL..."
             v-model="typedPesel"
           />
-          <button class="searchClient">Wyszukaj klienta</button>
-          <button class="addClient">Dodaj klienta</button>
+          <button class="searchClient" @click="searchByPesel">
+            Wyszukaj klienta
+          </button>
+          <button class="addClient">
+            Dodaj klienta
+          </button>
         </form>
         <aside>
           <!-- <h3 v-if="this.clientList.length == 0">
@@ -112,16 +116,15 @@ export default {
     clientList: [],
   }),
   mounted() {
-    this.VueShowClient = this.coachViewContext.binding.value;
-    console.log(this.VueShowClient);
-    //console.log(this.kierunkiStudiow);
+    this.VueShowClient = this.coachViewContext.binding.get("value");
   },
   methods: {
     showPerson() {
       this.personDataIsVisible = true;
     },
-    showTestResult() {
-      console.log(this.pickedClient);
+    searchByPesel() {
+      this.VueShowClient.searchByPesel = this.typedPesel;
+      this.VueShowClient.buttonSearchClient = true;
     },
     closeClientData() {
       this.personDataIsVisible = false;
