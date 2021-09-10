@@ -125,28 +125,27 @@ export default {
     searchByPesel() {
       this.VueShowClient.searchByPesel = this.typedPesel;
       this.VueShowClient.buttonSearchClient = true;
+      this.VueShowClient.buttonAddCar = false;
+      this.VueShowClient.buttonAddClient = false;
+    },
+    addNewClient() {
+      this.VueShowClient.buttonSearchClient = false;
+      this.VueShowClient.buttonAddCar = false;
+      this.VueShowClient.buttonAddClient = true;
+    },
+    addCarToClient() {
+      this.VueShowClient.buttonSearchClient = false;
+      this.VueShowClient.buttonAddCar = true;
+      this.VueShowClient.buttonAddClient = false;
     },
     closeClientData() {
       this.personDataIsVisible = false;
       this.pickedClient = [];
     },
     searchClient() {
+      this.VueShowClient = this.coachViewContext.binding.get("value");
       this.coachViewContext.binding.set("value", this.VueShowClient);
       this.coachViewContext.trigger();
-
-      // const clientPesel = document.querySelectorAll(".oneClient tr .pesel");
-      // console.log(
-      //   clientPesel.forEach((pesel) => {
-      //     const client = pesel.parentNode.parentNode;
-      //     if (this.typedPesel !== pesel.textContent) {
-      //       client.style.display = "none";
-      //     } else {
-      //       client.style.display = "flex";
-      //     }
-      //     console.log(pesel.textContent);
-      //     console.log(pesel.parentNode.parentNode);
-      //   })
-      // );
       console.log(this.clientList);
     },
   },
