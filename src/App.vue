@@ -1,6 +1,22 @@
 <template>
   <main>
     <div class="clientData" v-if="this.personDataIsVisible">
+      <div class="clientNotification" v-if="notificationDescIsVisible">
+        <form @submit.prevent="sendNewNotification">
+          <h2>Zgłoszenie serwisowe</h2>
+          <textarea
+            name="serviceDescription"
+            cols="30"
+            rows="10"
+            v-model="typedNotificationDesc"
+          ></textarea>
+          <button class="sendNotification">Wyślij</button>
+          <p>{{ this.VueShowClient.carToOrder.brand }}</p>
+        </form>
+        <button class="closeNotification" @click="closeNotificationDesc">
+          X
+        </button>
+      </div>
       <section class="moreInfoAboutClient">
         <h2>Dane klienta</h2>
         <div class="aboutClient">
@@ -47,29 +63,37 @@
             >
               <tr>
                 <td>
-                  Marka: <span>{{ car.brand }}</span>
+                  Marka: <span class="orderBrand">{{ car.brand }}</span>
                 </td>
                 <td>
-                  Model: <span>{{ car.model }}</span>
+                  Model: <span class="orderModel">{{ car.model }}</span>
                 </td>
                 <td>
-                  Silnik: <span>{{ car.engineType }}</span>
+                  Silnik: <span class="orderEngine">{{ car.engineType }}</span>
                 </td>
                 <td>
-                  Napęd: <span>{{ car.driveType }}</span>
+                  Napęd: <span class="orderDrive">{{ car.driveType }}</span>
                 </td>
                 <td>
-                  skrzynia biegów: <span>{{ car.gearType }}</span>
+                  skrzynia biegów:
+                  <span class="orderGear">{{ car.gearType }}</span>
                 </td>
                 <td>
-                  Rok produkcji: <span>{{ car.productionYear }}</span>
+                  Rok produkcji:
+                  <span class="orderProduction">{{ car.productionYear }}</span>
                 </td>
                 <td>
-                  Kolor: <span>{{ car.color }}</span>
+                  Kolor: <span class="orderColor">{{ car.color }}</span>
                 </td>
                 <td>
-                  VIN: <span>{{ car.vinNumber }}</span>
+                  VIN: <span class="orderVin">{{ car.vinNumber }}</span>
                 </td>
+                <button
+                  class="sendToService"
+                  @click="openNotificationDesc(index)"
+                >
+                  Wyślij zgłoszenie do serwisu
+                </button>
               </tr>
             </div>
           </div>
@@ -136,7 +160,10 @@
 export default {
   data: () => ({
     VueShowClient: {},
+    carOrd: {},
     typedPesel: "",
+    typedNotificationDesc: "",
+    notificationDescIsVisible: false,
     personDataIsVisible: false,
     pickedClient: [],
     clientList: [],
@@ -153,26 +180,65 @@ export default {
       this.VueShowClient.buttonSearchClient = true;
       this.VueShowClient.buttonAddCar = false;
       this.VueShowClient.buttonAddClient = false;
+      this.VueShowClient.buttonAddOrder = false;
     },
     addNewClient() {
       this.VueShowClient.buttonSearchClient = false;
       this.VueShowClient.buttonAddCar = false;
       this.VueShowClient.buttonAddClient = true;
+      this.VueShowClient.buttonAddOrder = false;
     },
     addCarToClient() {
       this.VueShowClient.buttonSearchClient = false;
       this.VueShowClient.buttonAddCar = true;
+      this.VueShowClient.buttonAddOrder = false;
       this.VueShowClient.buttonAddClient = false;
+      this.coachViewContext.binding.set("value", this.VueShowClient);
+      this.coachViewContext.trigger();
     },
     closeClientData() {
       this.personDataIsVisible = false;
       this.pickedClient = [];
     },
     searchClient() {
-      this.VueShowClient = this.coachViewContext.binding.get("value");
       this.coachViewContext.binding.set("value", this.VueShowClient);
       this.coachViewContext.trigger();
+      this.VueShowClient = this.coachViewContext.binding.get("value");
       this.typedPesel = "";
+    },
+    openNotificationDesc(arg1) {
+      this.VueShowClient.carAso.items[arg1] = this.VueShowClient.carToOrder;
+      this.notificationDescIsVisible = true;
+    },
+    closeNotificationDesc() {
+      this.notificationDescIsVisible = false;
+      this.typedNotificationDesc = "";
+    },
+    sendNewNotification() {
+      const orderBrand = document.querySelector(".orderBrand").textContent;
+      const orderModel = document.querySelector(".orderModel").textContent;
+      const orderEngine = document.querySelector(".orderEngine").textContent;
+      const orderDrive = document.querySelector(".orderDrive").textContent;
+      const orderGear = document.querySelector(".orderGear").textContent;
+      const orderProduction = document.querySelector(".orderProduction")
+        .textContent;
+      const orderColor = document.querySelector(".orderColor").textContent;
+      const orderVin = document.querySelector(".orderVin").textContent;
+      this.VueShowClient.carToOrder.brand = orderBrand;
+      this.VueShowClient.carToOrder.model = orderModel;
+      this.VueShowClient.carToOrder.engineType = orderEngine;
+      this.VueShowClient.carToOrder.driveType = orderDrive;
+      this.VueShowClient.carToOrder.gearType = orderGear;
+      this.VueShowClient.carToOrder.productionYear = orderProduction;
+      this.VueShowClient.carToOrder.color = orderColor;
+      this.VueShowClient.carToOrder.vinNumber = orderVin;
+      this.VueShowClient.clientsDescription = this.typedNotificationDesc;
+      this.VueShowClient.buttonSearchClient = false;
+      this.VueShowClient.buttonAddCar = false;
+      this.VueShowClient.buttonAddClient = false;
+      this.VueShowClient.buttonAddOrder = true;
+      this.coachViewContext.binding.set("value", this.VueShowClient);
+      this.coachViewContext.trigger();
     },
   },
 };
