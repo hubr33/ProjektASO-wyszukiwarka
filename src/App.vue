@@ -33,17 +33,43 @@
         </div>
         <div class="clientCars">
           <h4>Auta klienta</h4>
-          <button class="addNewCar">Dodaj / usuń auto</button>
+          <form @submit.prevent="addCarToClient">
+            <button class="addNewCar">
+              Dodaj auto
+            </button>
+          </form>
+
           <div class="clientCarsList">
-            <div class="oneClientCar">
+            <div
+              class="oneClientCar"
+              v-for="(car, index) in VueShowClient.carAso.items"
+              :key="index"
+            >
               <tr>
-                <td>Marka: <span>asd</span></td>
-                <td>Model: <span>asd</span></td>
-                <td>Silnik: <span>2.0 diesel 180km</span></td>
-                <td>skrzynia biegów: <span>Manualna</span></td>
-                <td>Rok produkcji: <span>2009</span></td>
-                <td>Kolor: <span>czarny</span></td>
-                <td>VIN: <span>xdddd</span></td>
+                <td>
+                  Marka: <span>{{ car.brand }}</span>
+                </td>
+                <td>
+                  Model: <span>{{ car.model }}</span>
+                </td>
+                <td>
+                  Silnik: <span>{{ car.engineType }}</span>
+                </td>
+                <td>
+                  Napęd: <span>{{ car.driveType }}</span>
+                </td>
+                <td>
+                  skrzynia biegów: <span>{{ car.gearType }}</span>
+                </td>
+                <td>
+                  Rok produkcji: <span>{{ car.productionYear }}</span>
+                </td>
+                <td>
+                  Kolor: <span>{{ car.color }}</span>
+                </td>
+                <td>
+                  VIN: <span>{{ car.vinNumber }}</span>
+                </td>
               </tr>
             </div>
           </div>
@@ -65,7 +91,7 @@
           <button class="searchClient" @click="searchByPesel">
             Wyszukaj klienta
           </button>
-          <button class="addClient">
+          <button class="addClient" @click="addNewClient">
             Dodaj klienta
           </button>
         </form>
@@ -146,7 +172,7 @@ export default {
       this.VueShowClient = this.coachViewContext.binding.get("value");
       this.coachViewContext.binding.set("value", this.VueShowClient);
       this.coachViewContext.trigger();
-      console.log(this.clientList);
+      this.typedPesel = "";
     },
   },
 };

@@ -125,7 +125,7 @@ main .clientData .moreInfoAboutClient .clientCars .clientCarsList .oneClientCar 
       -ms-flex-pack: center;
           justify-content: center;
   background-color: rgba(102, 24, 24, 0.06);
-  height: 140px;
+  height: 160px;
   width: 90%;
   border-radius: 6px;
   border: 1px solid black;
