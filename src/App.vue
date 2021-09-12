@@ -87,7 +87,10 @@
                 <td>
                   VIN: <span class="orderVin">{{ car.vinNumber }}</span>
                 </td>
-                <button class="sendToService" @click="openNotificationDesc">
+                <button
+                  class="sendToService"
+                  @click="openNotificationDesc(index)"
+                >
                   Wyślij zgłoszenie do serwisu
                 </button>
               </tr>
@@ -200,56 +203,24 @@ export default {
       this.VueShowClient = this.coachViewContext.binding.get("value");
       this.typedPesel = "";
     },
-    openNotificationDesc(e) {
-      const oneClientCar = e.target.parentNode.parentNode;
-      const orderBrand = oneClientCar.querySelector(".orderBrand").textContent;
-      const orderModel = oneClientCar.querySelector(".orderModel").textContent;
-      const orderEngine = oneClientCar.querySelector(".orderEngine")
-        .textContent;
-      const orderDrive = oneClientCar.querySelector(".orderDrive").textContent;
-      const orderGear = oneClientCar.querySelector(".orderGear").textContent;
-      const orderProduction = oneClientCar.querySelector(".orderProduction")
-        .textContent;
-      const orderColor = oneClientCar.querySelector(".orderColor").textContent;
-      const orderVin = oneClientCar.querySelector(".orderVin").textContent;
-      this.selectedCar.push({
-        brand: orderBrand,
-        model: orderModel,
-        engineType: orderEngine,
-        driveType: orderDrive,
-        gearType: orderGear,
-        productionYear: orderProduction,
-        color: orderColor,
-        vinNumber: orderVin,
-      });
+    openNotificationDesc(index) {
+      this.VueShowClient.carCaseid = this.VueShowClient.carAso.items[
+        index
+      ].mrcCaseHeader.caseId;
+      console.log(this.VueShowClient);
       this.notificationDescIsVisible = true;
     },
     closeNotificationDesc() {
       this.notificationDescIsVisible = false;
       this.typedNotificationDesc = "";
+      this.selectedCar = [];
     },
     sendNewNotification() {
-      this.VueShowClient.carToOrder.brand = this.selectedCar[0].brand;
-      this.VueShowClient.carToOrder.model = this.selectedCar[0].model;
-      this.VueShowClient.carToOrder.engineType = this.selectedCar[0].engineType;
-      this.VueShowClient.carToOrder.driveType = this.selectedCar[0].driveType;
-      this.VueShowClient.carToOrder.gearType = this.selectedCar[0].gearType;
-      this.VueShowClient.carToOrder.productionYear = this.selectedCar[0].productionYear;
-      this.VueShowClient.carToOrder.color = this.selectedCar[0].color;
-      this.VueShowClient.carToOrder.vinNumber = this.selectedCar[0].vinNumber;
       this.VueShowClient.clientsDescription = this.typedNotificationDesc;
       this.VueShowClient.buttonSearchClient = false;
       this.VueShowClient.buttonAddCar = false;
       this.VueShowClient.buttonAddClient = false;
       this.VueShowClient.buttonAddOrder = true;
-      console.log(this.VueShowClient.carToOrder.brand);
-      console.log(this.VueShowClient.carToOrder.model);
-      console.log(this.VueShowClient.carToOrder.engineType);
-      console.log(this.VueShowClient.carToOrder.driveType);
-      console.log(this.VueShowClient.carToOrder.gearType);
-      console.log(this.VueShowClient.carToOrder.productionYear);
-      console.log(this.VueShowClient.carToOrder.color);
-      console.log(this.VueShowClient.carToOrder.vinNumber);
       this.coachViewContext.binding.set("value", this.VueShowClient);
       this.coachViewContext.trigger();
     },
