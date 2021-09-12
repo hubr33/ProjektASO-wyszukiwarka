@@ -227,7 +227,6 @@ export default {
     closeNotificationDesc() {
       this.notificationDescIsVisible = false;
       this.typedNotificationDesc = "";
-      this.selectedCar = [];
     },
     sendNewNotification() {
       this.VueShowClient.carToOrder.brand = this.selectedCar[0].brand;
@@ -243,6 +242,14 @@ export default {
       this.VueShowClient.buttonAddCar = false;
       this.VueShowClient.buttonAddClient = false;
       this.VueShowClient.buttonAddOrder = true;
+      console.log(this.VueShowClient.carToOrder.brand);
+      console.log(this.VueShowClient.carToOrder.model);
+      console.log(this.VueShowClient.carToOrder.engineType);
+      console.log(this.VueShowClient.carToOrder.driveType);
+      console.log(this.VueShowClient.carToOrder.gearType);
+      console.log(this.VueShowClient.carToOrder.productionYear);
+      console.log(this.VueShowClient.carToOrder.color);
+      console.log(this.VueShowClient.carToOrder.vinNumber);
       this.coachViewContext.binding.set("value", this.VueShowClient);
       this.coachViewContext.trigger();
     },
