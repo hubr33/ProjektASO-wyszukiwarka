@@ -49,9 +49,7 @@
         <div class="clientCars">
           <h4>Auta klienta</h4>
           <form @submit.prevent="addCarToClient">
-            <button class="addNewCar">
-              Dodaj auto
-            </button>
+            <button class="addNewCar">Dodaj auto</button>
           </form>
 
           <div class="clientCarsList">
@@ -62,7 +60,7 @@
             >
               <tr>
                 <td>
-                  Marka: <span class="orderBrand">{{ car.brand }}</span>
+                  Marka:: <span class="orderBrand">{{ car.brand }}</span>
                 </td>
                 <td>
                   Model: <span class="orderModel">{{ car.model }}</span>
@@ -114,9 +112,7 @@
           <button class="searchClient" @click="searchByPesel">
             Wyszukaj klienta
           </button>
-          <button class="addClient" @click="addNewClient">
-            Dodaj klienta
-          </button>
+          <button class="addClient" @click="addNewClient">Dodaj klienta</button>
         </form>
         <aside>
           <!-- <h3 v-if="this.clientList.length == 0">
@@ -204,9 +200,8 @@ export default {
       this.typedPesel = "";
     },
     openNotificationDesc(index) {
-      this.VueShowClient.carCaseid = this.VueShowClient.carAso.items[
-        index
-      ].mrcCaseHeader.caseId;
+      this.VueShowClient.carCaseid =
+        this.VueShowClient.carAso.items[index].mrcCaseHeader.caseId;
       console.log(this.VueShowClient);
       this.notificationDescIsVisible = true;
     },
