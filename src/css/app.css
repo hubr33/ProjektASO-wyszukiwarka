@@ -1,3 +1,12 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 main {
   position: relative;
   background-color: whitesmoke;
@@ -274,6 +283,7 @@ main .aboutClient {
 }
 
 main .aboutClient div.clientList {
+  position: relative;
   width: 70%;
   height: 90%;
   background-color: rgba(0, 0, 0, 0.1);
@@ -282,6 +292,14 @@ main .aboutClient div.clientList {
           box-shadow: 0 0 4px 1px black;
   background-color: rgba(135, 206, 250, 0.1);
   overflow: hidden;
+}
+
+main .aboutClient div.clientList h3 {
+  position: absolute;
+  font-size: 12px;
+  left: 20px;
+  top: 10px;
+  color: #dd5e5e;
 }
 
 main .aboutClient div.clientList form {
@@ -305,6 +323,10 @@ main .aboutClient div.clientList form input {
   padding: 3px 8px;
   background-color: white;
   outline: none;
+}
+
+main .aboutClient div.clientList form input.active {
+  background-color: rgba(255, 0, 0, 0.1);
 }
 
 main .aboutClient div.clientList form button {
@@ -381,5 +403,56 @@ main .aboutClient div.clientList aside .oneClient .showMoreInfo {
 
 main .aboutClient div.clientList aside .oneClient .showMoreInfo:hover {
   background-color: rgba(135, 206, 250, 0.25);
+}
+
+@media (max-width: 1200px) {
+  main .aboutClient div.clientList form {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 200px;
+  }
+  main .aboutClient div.clientList form input {
+    height: 30px;
+  }
+  main .aboutClient div.clientList form button {
+    width: 50%;
+  }
+  main .aboutClient div.clientList aside {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  main .aboutClient div.clientList aside .oneClient {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 70%;
+    height: 500px;
+    border: 1px solid black;
+    margin: 20px 0;
+    -webkit-box-shadow: 0 0 4px 1px;
+            box-shadow: 0 0 4px 1px;
+    border-radius: 6px;
+  }
+  main .aboutClient div.clientList aside .oneClient .showMoreInfo {
+    width: 100%;
+    padding: 6px 20px;
+  }
+  main .aboutClient div.clientList aside .oneClient tr {
+    width: 100%;
+    word-break: break-all;
+  }
 }
 /*# sourceMappingURL=app.css.map */

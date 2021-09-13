@@ -4,6 +4,14 @@
   align-items: center;
 }
 
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 main {
   position: relative;
   background-color: rgb(245, 245, 245);
@@ -184,6 +192,7 @@ main {
     height: calc(100vh - 80px);
     @include flexCenter;
     div.clientList {
+      position: relative;
       width: 70%;
       height: 90%;
       background-color: rgba(0, 0, 0, 0.1);
@@ -191,6 +200,13 @@ main {
       box-shadow: 0 0 4px 1px black;
       background-color: rgba(135, 206, 250, 0.1);
       overflow: hidden;
+      h3 {
+        position: absolute;
+        font-size: 12px;
+        left: 20px;
+        top: 10px;
+        color: rgb(221, 94, 94);
+      }
       form {
         width: 100%;
         height: 100px;
@@ -204,6 +220,9 @@ main {
           padding: 3px 8px;
           background-color: white;
           outline: none;
+          &.active {
+            background-color: rgba(255, 0, 0, 0.1);
+          }
         }
         button {
           position: relative;
@@ -261,6 +280,42 @@ main {
           }
         }
       }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  main .aboutClient div.clientList form {
+    flex-direction: column;
+    height: 200px;
+    input {
+      height: 30px;
+    }
+    button {
+      width: 50%;
+    }
+  }
+  main .aboutClient div.clientList aside {
+    display: flex;
+    justify-content: center;
+  }
+  main .aboutClient div.clientList aside .oneClient {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 70%;
+    height: 500px;
+    border: 1px solid black;
+    margin: 20px 0;
+    box-shadow: 0 0 4px 1px;
+    border-radius: 6px;
+    .showMoreInfo {
+      width: 100%;
+      padding: 6px 20px;
+    }
+    tr {
+      width: 100%;
+      word-break: break-all;
     }
   }
 }

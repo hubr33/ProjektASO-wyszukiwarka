@@ -20,30 +20,42 @@
         <h2>Dane klienta</h2>
         <div class="aboutClient">
           <p>
-            Imię: <span>{{ VueShowClient.currentClient.name }}</span>
+            Imię: <span>{{ VueShowClient.currentClient.name }}Hubert</span>
           </p>
           <p>
             Nazwisko:
-            <span>{{ VueShowClient.currentClient.surname }}</span>
+            <span>{{ VueShowClient.currentClient.surname }}Radziwonka</span>
           </p>
           <p>
             Nazwa firmy:
-            <span>{{ VueShowClient.currentClient.companyName }}</span>
+            <span
+              >{{ VueShowClient.currentClient.companyName }}HUBREX COMPANY
+              SA</span
+            >
           </p>
           <p>
-            NIP: <span>{{ VueShowClient.currentClient.nip }}</span>
+            NIP:
+            <span>{{ VueShowClient.currentClient.nip }} xxxxxxxxxxxxxxxxx</span>
           </p>
           <p>
-            Adres: <span>{{ VueShowClient.currentClient.address }}</span>
+            Adres:
+            <span>{{ VueShowClient.currentClient.address }} kwiatowa 1</span>
           </p>
           <p>
-            Pesel: <span>{{ VueShowClient.currentClient.pesel }}</span>
+            Pesel:
+            <span>{{ VueShowClient.currentClient.pesel }} 990506007091</span>
           </p>
           <p>
-            Telefon: <span>{{ VueShowClient.currentClient.phoneNumber }}</span>
+            Telefon:
+            <span>{{ VueShowClient.currentClient.phoneNumber }}694224869</span>
           </p>
           <p>
-            E-mail: <span>{{ VueShowClient.currentClient.email }}</span>
+            E-mail:
+            <span
+              >{{
+                VueShowClient.currentClient.email
+              }}hubert.radziwonka33@gmail.com</span
+            >
           </p>
         </div>
         <div class="clientCars">
@@ -105,11 +117,15 @@
     </header>
     <section class="aboutClient">
       <div class="clientList">
+        <h3 v-if="this.showPeselError">
+          Wpisz poprawnie numer pesel (11 znaków)
+        </h3>
         <form @submit.prevent="searchClient">
           <input
             type="text"
             placeholder="Wyszukaj klienta po numerze PESEL..."
             v-model="typedPesel"
+            class="clientInputSearch"
           />
           <button class="searchClient" @click="searchByPesel">
             Wyszukaj klienta
@@ -125,25 +141,31 @@
           <div class="oneClient">
             <tr>
               <h4>Imię i nazwisko</h4>
-              <td>{{ VueShowClient.currentClient.name }}</td>
-              <td>{{ VueShowClient.currentClient.surname }}</td>
+              <td>{{ VueShowClient.currentClient.name }}hubert</td>
+              <td>
+                {{ VueShowClient.currentClient.surname }}radziwasadasdasdas
+              </td>
             </tr>
             <tr>
               <h4>Nazwa i NIP firmy</h4>
               <td>
-                {{ VueShowClient.currentClient.companyName }}
+                {{ VueShowClient.currentClient.companyName }}dsadasdadadas
               </td>
-              <td>{{ VueShowClient.currentClient.nip }}</td>
+              <td>{{ VueShowClient.currentClient.nip }}dsadasdasdasdasd</td>
             </tr>
             <tr>
               <h4>Adres i pesel</h4>
-              <td>{{ VueShowClient.currentClient.address }}</td>
-              <td class="pesel">{{ VueShowClient.currentClient.pesel }}</td>
+              <td>{{ VueShowClient.currentClient.address }}asdassdasdasdas</td>
+              <td class="pesel">
+                {{ VueShowClient.currentClient.pesel }}dasdasdasdasdasd
+              </td>
             </tr>
             <tr>
               <h4>Dane kontaktowe</h4>
-              <td>{{ VueShowClient.currentClient.phoneNumber }}</td>
-              <td>{{ VueShowClient.currentClient.email }}</td>
+              <td>
+                {{ VueShowClient.currentClient.phoneNumber }}asdasdasdasdsadas
+              </td>
+              <td>{{ VueShowClient.currentClient.email }}dasdasdsa</td>
             </tr>
             <button class="showMoreInfo" @click="showPerson">
               Pokaż więcej informacji
@@ -165,6 +187,7 @@ export default {
     notificationDescIsVisible: false,
     personDataIsVisible: false,
     selectedCar: [],
+    showPeselError: false,
   }),
   mounted() {
     this.VueShowClient = this.coachViewContext.binding.get("value");
@@ -198,10 +221,18 @@ export default {
       this.personDataIsVisible = false;
     },
     searchClient() {
-      this.coachViewContext.binding.set("value", this.VueShowClient);
-      this.coachViewContext.trigger();
-      this.VueShowClient = this.coachViewContext.binding.get("value");
-      this.typedPesel = "";
+      const searchClient = document.querySelector(".clientInputSearch");
+      if (this.typedPesel.length !== 11) {
+        searchClient.classList.add("active");
+        this.showPeselError = true;
+      } else {
+        this.coachViewContext.binding.set("value", this.VueShowClient);
+        this.coachViewContext.trigger();
+        this.VueShowClient = this.coachViewContext.binding.get("value");
+        this.typedPesel = "";
+        searchClient.classList.remove("active");
+        this.showPeselError = false;
+      }
     },
     openNotificationDesc(index) {
       this.VueShowClient.carCaseid = this.VueShowClient.carAso.items[
