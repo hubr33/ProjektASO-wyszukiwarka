@@ -61,6 +61,10 @@ main {
           border-radius: 6px;
           padding: 4px 6px;
           background-color: rgba(135, 206, 250, 0.05);
+
+          &.active {
+            background-color: rgba(255, 0, 0, 0.1);
+          }
         }
         .sendNotification {
           background-color: rgba(135, 206, 250, 0.2);
@@ -194,7 +198,7 @@ main {
     div.clientList {
       position: relative;
       width: 70%;
-      height: 90%;
+      min-height: 90%;
       background-color: rgba(0, 0, 0, 0.1);
       border-radius: 7px;
       box-shadow: 0 0 4px 1px black;
@@ -250,7 +254,7 @@ main {
       }
       aside {
         width: 100%;
-        height: calc(100% - 100px);
+        min-height: calc(100% - 100px);
         background-color: white;
         overflow: scroll;
         h3 {
@@ -285,6 +289,15 @@ main {
 }
 
 @media (max-width: 1200px) {
+  main .clientData {
+    height: 160vh;
+    .clientNotification {
+      height: 160vh;
+    }
+  }
+  section.aboutClient {
+    min-height: 140vh;
+  }
   main .aboutClient div.clientList form {
     flex-direction: column;
     height: 200px;
@@ -297,6 +310,7 @@ main {
   }
   main .aboutClient div.clientList aside {
     display: flex;
+    overflow: scroll;
     justify-content: center;
   }
   main .aboutClient div.clientList aside .oneClient {

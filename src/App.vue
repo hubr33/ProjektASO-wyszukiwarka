@@ -20,42 +20,35 @@
         <h2>Dane klienta</h2>
         <div class="aboutClient">
           <p>
-            Imię: <span>{{ VueShowClient.currentClient.name }}Hubert</span>
+            Imię: <span>{{ VueShowClient.currentClient.name }}</span>
           </p>
           <p>
             Nazwisko:
-            <span>{{ VueShowClient.currentClient.surname }}Radziwonka</span>
+            <span>{{ VueShowClient.currentClient.surname }}</span>
           </p>
           <p>
             Nazwa firmy:
-            <span
-              >{{ VueShowClient.currentClient.companyName }}HUBREX COMPANY
-              SA</span
-            >
+            <span>{{ VueShowClient.currentClient.companyName }}</span>
           </p>
           <p>
             NIP:
-            <span>{{ VueShowClient.currentClient.nip }} xxxxxxxxxxxxxxxxx</span>
+            <span>{{ VueShowClient.currentClient.nip }}</span>
           </p>
           <p>
             Adres:
-            <span>{{ VueShowClient.currentClient.address }} kwiatowa 1</span>
+            <span>{{ VueShowClient.currentClient.address }}</span>
           </p>
           <p>
             Pesel:
-            <span>{{ VueShowClient.currentClient.pesel }} 990506007091</span>
+            <span>{{ VueShowClient.currentClient.pesel }}</span>
           </p>
           <p>
             Telefon:
-            <span>{{ VueShowClient.currentClient.phoneNumber }}694224869</span>
+            <span>{{ VueShowClient.currentClient.phoneNumber }}</span>
           </p>
           <p>
             E-mail:
-            <span
-              >{{
-                VueShowClient.currentClient.email
-              }}hubert.radziwonka33@gmail.com</span
-            >
+            <span>{{ VueShowClient.currentClient.email }}</span>
           </p>
         </div>
         <div class="clientCars">
@@ -118,12 +111,12 @@
     <section class="aboutClient">
       <div class="clientList">
         <h3 v-if="this.showPeselError">
-          Wpisz poprawnie numer pesel (11 znaków)
+          Wpisz numer pesel
         </h3>
         <form @submit.prevent="searchClient">
           <input
             type="text"
-            placeholder="Wyszukaj klienta po numerze PESEL..."
+            placeholder="Pesel klienta..."
             v-model="typedPesel"
             class="clientInputSearch"
           />
@@ -138,34 +131,32 @@
           <!-- <h3 v-if="this.clientList.length == 0">
             Nie znaleziono klienta w bazie danych
           </h3> -->
-          <div class="oneClient">
+          <div class="oneClient" v-if="showSearchedPerson">
             <tr>
               <h4>Imię i nazwisko</h4>
-              <td>{{ VueShowClient.currentClient.name }}hubert</td>
+              <td>{{ VueShowClient.currentClient.name }}</td>
               <td>
-                {{ VueShowClient.currentClient.surname }}radziwasadasdasdas
+                {{ VueShowClient.currentClient.surname }}
               </td>
             </tr>
             <tr>
               <h4>Nazwa i NIP firmy</h4>
-              <td>
-                {{ VueShowClient.currentClient.companyName }}dsadasdadadas
-              </td>
-              <td>{{ VueShowClient.currentClient.nip }}dsadasdasdasdasd</td>
+              <td>{{ VueShowClient.currentClient.companyName }}</td>
+              <td>{{ VueShowClient.currentClient.nip }}</td>
             </tr>
             <tr>
               <h4>Adres i pesel</h4>
-              <td>{{ VueShowClient.currentClient.address }}asdassdasdasdas</td>
+              <td>{{ VueShowClient.currentClient.address }}</td>
               <td class="pesel">
-                {{ VueShowClient.currentClient.pesel }}dasdasdasdasdasd
+                {{ VueShowClient.currentClient.pesel }}
               </td>
             </tr>
             <tr>
               <h4>Dane kontaktowe</h4>
               <td>
-                {{ VueShowClient.currentClient.phoneNumber }}asdasdasdasdsadas
+                {{ VueShowClient.currentClient.phoneNumber }}
               </td>
-              <td>{{ VueShowClient.currentClient.email }}dasdasdsa</td>
+              <td>{{ VueShowClient.currentClient.email }}</td>
             </tr>
             <button class="showMoreInfo" @click="showPerson">
               Pokaż więcej informacji
@@ -188,6 +179,7 @@ export default {
     personDataIsVisible: false,
     selectedCar: [],
     showPeselError: false,
+    showSearchedPerson: false,
   }),
   mounted() {
     this.VueShowClient = this.coachViewContext.binding.get("value");
@@ -222,16 +214,17 @@ export default {
     },
     searchClient() {
       const searchClient = document.querySelector(".clientInputSearch");
-      if (this.typedPesel.length !== 11) {
-        searchClient.classList.add("active");
-        this.showPeselError = true;
+      if (this.typedPesel !== "") {
+        searchClient.classList.remove("active");
+        this.showSearchedPerson = true;
+        this.showPeselError = false;
+        this.typedPesel = "";
       } else {
         this.coachViewContext.binding.set("value", this.VueShowClient);
         this.coachViewContext.trigger();
         this.VueShowClient = this.coachViewContext.binding.get("value");
-        this.typedPesel = "";
-        searchClient.classList.remove("active");
-        this.showPeselError = false;
+        searchClient.classList.add("active");
+        this.showPeselError = true;
       }
     },
     openNotificationDesc(index) {
@@ -247,13 +240,19 @@ export default {
       this.selectedCar = [];
     },
     sendNewNotification() {
-      this.VueShowClient.clientsDescription = this.typedNotificationDesc;
-      this.VueShowClient.buttonSearchClient = false;
-      this.VueShowClient.buttonAddCar = false;
-      this.VueShowClient.buttonAddClient = false;
-      this.VueShowClient.buttonAddOrder = true;
-      this.coachViewContext.binding.set("value", this.VueShowClient);
-      this.coachViewContext.trigger();
+      const areaText = document.querySelector("textarea");
+      if (this.typedNotificationDesc.length > 5) {
+        this.VueShowClient.clientsDescription = this.typedNotificationDesc;
+        this.VueShowClient.buttonSearchClient = false;
+        this.VueShowClient.buttonAddCar = false;
+        this.VueShowClient.buttonAddClient = false;
+        this.VueShowClient.buttonAddOrder = true;
+        this.coachViewContext.binding.set("value", this.VueShowClient);
+        this.coachViewContext.trigger();
+        areaText.classList.remove("active");
+      } else {
+        areaText.classList.add("active");
+      }
     },
   },
 };

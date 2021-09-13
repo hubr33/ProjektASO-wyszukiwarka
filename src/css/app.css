@@ -94,6 +94,10 @@ main .clientData .clientNotification form textarea {
   background-color: rgba(135, 206, 250, 0.05);
 }
 
+main .clientData .clientNotification form textarea.active {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
 main .clientData .clientNotification form .sendNotification {
   background-color: rgba(135, 206, 250, 0.2);
   width: 80%;
@@ -285,7 +289,7 @@ main .aboutClient {
 main .aboutClient div.clientList {
   position: relative;
   width: 70%;
-  height: 90%;
+  min-height: 90%;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 7px;
   -webkit-box-shadow: 0 0 4px 1px black;
@@ -357,7 +361,7 @@ main .aboutClient div.clientList form button:hover::after {
 
 main .aboutClient div.clientList aside {
   width: 100%;
-  height: calc(100% - 100px);
+  min-height: calc(100% - 100px);
   background-color: white;
   overflow: scroll;
 }
@@ -406,6 +410,15 @@ main .aboutClient div.clientList aside .oneClient .showMoreInfo:hover {
 }
 
 @media (max-width: 1200px) {
+  main .clientData {
+    height: 160vh;
+  }
+  main .clientData .clientNotification {
+    height: 160vh;
+  }
+  section.aboutClient {
+    min-height: 140vh;
+  }
   main .aboutClient div.clientList form {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -423,6 +436,7 @@ main .aboutClient div.clientList aside .oneClient .showMoreInfo:hover {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    overflow: scroll;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
